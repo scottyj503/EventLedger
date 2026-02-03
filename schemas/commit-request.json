@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eventledger.io/schemas/commit-request.json",
+  "title": "CommitRequest",
+  "description": "Request to commit consumer offset",
+  "type": "object",
+  "properties": {
+    "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from poll response",
+      "minLength": 1
+    }
+  },
+  "required": ["cursor"],
+  "additionalProperties": false
+}

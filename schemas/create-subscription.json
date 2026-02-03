@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eventledger.io/schemas/create-subscription.json",
+  "title": "CreateSubscriptionRequest",
+  "description": "Request to create a new subscription",
+  "type": "object",
+  "properties": {
+    "subscription_id": {
+      "type": "string",
+      "description": "Unique subscription identifier",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "start_from": {
+      "type": "string",
+      "description": "Where to start consuming from",
+      "enum": ["earliest", "latest", "compacted"],
+      "default": "latest"
+    }
+  },
+  "required": ["subscription_id"],
+  "additionalProperties": false
+}

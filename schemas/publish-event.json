@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eventledger.io/schemas/publish-event.json",
+  "title": "PublishEvent",
+  "description": "A single event to publish",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Key for partitioning and compaction (e.g., entity ID)",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "type": {
+      "type": "string",
+      "description": "Event type (e.g., 'order.created')",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9._-]{0,127}$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "data": {
+      "type": "object",
+      "description": "Event payload (arbitrary JSON object)"
+    }
+  },
+  "required": ["key", "type", "data"],
+  "additionalProperties": false
+}

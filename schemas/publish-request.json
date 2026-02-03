@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eventledger.io/schemas/publish-request.json",
+  "title": "PublishRequest",
+  "description": "Request to publish one or more events",
+  "type": "object",
+  "properties": {
+    "events": {
+      "type": "array",
+      "description": "Events to publish",
+      "items": {
+        "$ref": "publish-event.json"
+      },
+      "minItems": 1,
+      "maxItems": 100
+    }
+  },
+  "required": ["events"],
+  "additionalProperties": false
+}

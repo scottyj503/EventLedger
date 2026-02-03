@@ -1,0 +1,21 @@
+[package]
+name = "eventledger-publish"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "bootstrap"
+path = "src/main.rs"
+
+[dependencies]
+eventledger-core = { path = "../shared" }
+aws-config.workspace = true
+aws-sdk-dynamodb.workspace = true
+lambda_http.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

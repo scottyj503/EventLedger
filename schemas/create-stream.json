@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eventledger.io/schemas/create-stream.json",
+  "title": "CreateStreamRequest",
+  "description": "Request to create a new stream",
+  "type": "object",
+  "properties": {
+    "stream_id": {
+      "type": "string",
+      "description": "Unique stream identifier",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "partition_count": {
+      "type": "integer",
+      "description": "Number of partitions for parallel processing",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 3
+    },
+    "retention_hours": {
+      "type": "integer",
+      "description": "Retention period in hours for hot storage",
+      "minimum": 1,
+      "maximum": 8760,
+      "default": 168
+    }
+  },
+  "required": ["stream_id"],
+  "additionalProperties": false
+}
