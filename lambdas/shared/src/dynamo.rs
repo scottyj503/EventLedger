@@ -121,11 +121,12 @@ impl DynamoClient {
 
     /// List all streams
     pub async fn list_streams(&self) -> Result<Vec<Stream>> {
+        // Use Scan with filter since we can't use begins_with on partition key in Query
         let result = self
             .client
-            .query()
+            .scan()
             .table_name(&self.table_name)
-            .key_condition_expression("begins_with(PK, :prefix) AND SK = :meta")
+            .filter_expression("begins_with(PK, :prefix) AND SK = :meta")
             .expression_attribute_values(":prefix", AttributeValue::S("STREAM#".to_string()))
             .expression_attribute_values(":meta", AttributeValue::S("META".to_string()))
             .send()
